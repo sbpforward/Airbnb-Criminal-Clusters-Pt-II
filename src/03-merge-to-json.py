@@ -20,11 +20,12 @@ def sort(df):
     return  flask_df
 
 def save(df):
-    df.to_pickle('../data/flask_df_pikle')
+    df.to_pickle('../data/flask_df_pickle')
     return df
 
 def save_json(df):
-    df.to_json(r'.../data/flask_df.json)
+    df.to_json('../data/flask_df.json')
+    return df
 
 
 if __name__ == '__main__':
@@ -34,3 +35,6 @@ if __name__ == '__main__':
     
     flask_df = flask_df(df)
     flask_df = sort(flask_df)
+    save(df)
+    save_json(df)
+
