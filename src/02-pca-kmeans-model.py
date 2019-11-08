@@ -157,6 +157,11 @@ def plot_KMeans(few_principalComponents):
     plt.title('Clusters by Target')
     plt.savefig('clusters-by-target.png')
     # plt.show()
+    return fewKMeansDF
+
+def save(df):
+    df.to_pickle('../data/pickled_kmeans_df')
+    return df
 
 if __name__ == '__main__':
     df = pd.read_pickle('../data/pickled_listings_df')
@@ -167,4 +172,6 @@ if __name__ == '__main__':
     few_categorical_df, few_principalComponents = PCA_fewer_categoricals(df)
     plot_PCA(few_categorical_df,'Fewer Categorical Features')
 
-    plot_KMeans(few_principalComponents)
+    fewKMeansDF = plot_KMeans(few_principalComponents)
+
+    save(fewKMeansDF)
