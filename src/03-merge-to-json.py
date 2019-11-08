@@ -16,17 +16,21 @@ def flask_df(df):
     return flask_df
 
 def sort(df):
-    df.sort_values(by=['kmeans_cluster', 'host_id', 'current_license'], inplace=True)
-    return  df
-    
-# def save(df):
-#     df.to_pickle('../data/pickled_kmeans_df')
-#     return df
+    flask_df = df.sort_values(by=['kmeans_cluster', 'host_id', 'current_license'])
+    return  flask_df
+
+def save(df):
+    df.to_pickle('../data/flask_df_pikle')
+    return df
+
+def save_json(df):
+    df.to_json(r'.../data/flask_df.json)
+
 
 if __name__ == '__main__':
     df_master = pd.read_pickle('../data/pickled_listings_df')
-    df_kmeans = pd.read_pickle('../data/pickled_kmeans_df')
-
+    df_kmeans = pd.read_pickle('../data/pickled_kmeans_df') 
     df = merge(df_master,df_kmeans)
-    flask_df = flask_df(df)
     
+    flask_df = flask_df(df)
+    flask_df = sort(flask_df)
