@@ -9,10 +9,7 @@ def flask_df(df):
 
     flask_df = df[['kmeans_cluster','listing_url', 'list_loc_denver', 'host_id',
                     'host_loc_denver','host_url','needs_license','current_license', 
-                    'minimum_nights', 'maximum_nights','neighbourhood_cleansed',
-                    'calculated_host_listings_count_entire_homes',
-                    'calculated_host_listings_count_private_rooms',
-                    'calculated_host_listings_count_shared_rooms']]
+                    'minimum_nights', 'maximum_nights']]
     return flask_df
 
 def sort(df):
