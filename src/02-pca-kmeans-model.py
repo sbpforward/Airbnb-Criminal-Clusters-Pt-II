@@ -141,7 +141,7 @@ def plot_KMeans(few_principalComponents):
     kmeans = KMeans(n_clusters=3)
     X_clustered_num = kmeans.fit_predict(few_principalComponents)
 
-    # Plot the scatter diagram
+    # Plot the scatter diagram with centroids
     plt.figure(figsize = (7,7))
     plt.scatter(few_principalComponents[:,0], few_principalComponents[:,1], c=kmeans.labels_, cmap='rainbow', alpha=0.2)
     plt.scatter(kmeans.cluster_centers_[:,0] ,kmeans.cluster_centers_[:,1], color='black')
@@ -162,6 +162,7 @@ def plot_KMeans(few_principalComponents):
     plt.ylabel('% Violation',fontsize=20)
     plt.xlabel('KMeans Cluster',fontsize=20)
     plt.xticks(fontsize=19)
+    plt.tight_layout()
     plt.savefig('clusters-by-target.png')
     # plt.show()
     return fewKMeansDF
