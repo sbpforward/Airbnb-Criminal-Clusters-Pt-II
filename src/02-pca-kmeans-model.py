@@ -85,8 +85,10 @@ def PCA_fewer_categoricals(df):
     fig, ax = plt.subplots(figsize=(8,6))
     ax.plot(prop_var_expl, color='red', linewidth=2, label='Explained variance')
     ax.axhline(0.9, label='90% goal', linestyle='--', color="black", linewidth=1)
-    ax.set_ylabel('cumulative prop. of explained variance')
-    ax.set_xlabel('number of principal components')
+    ax.set_ylabel('Cumulative Explained Variance', fontsize=20)
+    ax.set_xlabel('# of Principal Components', fontsize=20)
+    plt.xticks(fontsize=15)
+    plt.yticks(fontsize=15)
     ax.legend()
     # plt.show()
     plt.savefig('explained-variance.png')
@@ -107,8 +109,8 @@ def plot_PCA(df, title):
     '''
     fig = plt.figure(figsize = (8,8))
     ax = fig.add_subplot(1,1,1) 
-    ax.set_xlabel('Principal Component 1', fontsize = 15)
-    ax.set_ylabel('Principal Component 2', fontsize = 15)
+    ax.set_xlabel('Principal Component 1', fontsize = 20)
+    ax.set_ylabel('Principal Component 2', fontsize = 20)
     ax.set_title(f'{title}', fontsize = 20)
     targets = [0,1]
     colors = ['r', 'b']
@@ -141,9 +143,11 @@ def plot_KMeans(few_principalComponents):
 
     # Plot the scatter diagram
     plt.figure(figsize = (7,7))
-    plt.scatter(few_principalComponents[:,0],few_principalComponents[:,1], 
-                c=kmeans.labels_,cmap='rainbow', alpha=0.5) 
-    plt.title('KMeans Clusters (3)')
+    plt.scatter(few_principalComponents[:,0], few_principalComponents[:,1], c=kmeans.labels_, cmap='rainbow', alpha=0.2)
+    plt.scatter(kmeans.cluster_centers_[:,0] ,kmeans.cluster_centers_[:,1], color='black')
+    plt.title('KMeans Clusters (3)', fontsize=20)
+    plt.xticks(fontsize=15)
+    plt.yticks(fontsize=15)
     plt.savefig('kmeans-clusters.png')
     # plt.show()
 
@@ -154,7 +158,10 @@ def plot_KMeans(few_principalComponents):
     kmeans_y = kmeans_y.reshape(4601)
     fewKMeansDF = pd.DataFrame({'kmeans_cluster':fewkmeans, 'target':kmeans_y})
     sns.barplot(x='kmeans_cluster',y='target',data=fewKMeansDF)
-    plt.title('Clusters by Target')
+    plt.title('Clusters by Target', fontsize=20)
+    plt.ylabel('% Violation',fontsize=20)
+    plt.xlabel('KMeans Cluster',fontsize=20)
+    plt.xticks(fontsize=19)
     plt.savefig('clusters-by-target.png')
     # plt.show()
     return fewKMeansDF

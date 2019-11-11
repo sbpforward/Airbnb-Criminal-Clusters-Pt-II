@@ -32,6 +32,6 @@ if __name__ == '__main__':
     
     flask_df = flask_df(df)
     flask_df = sort(flask_df)
-    save(df)
-    save_json(df)
+    save(flask_df)
+    save_json(flask_df)
 

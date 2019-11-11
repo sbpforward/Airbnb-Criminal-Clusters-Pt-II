@@ -5,17 +5,32 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    # Logic for reading our data
-    data = 'placeholder for table'
+    # Logic for reading data
+    df = pd.read_json('static/data/flask_df.json')
+    table_columns = [
+        'kmeans_cluster',
+        'listing_url',
+        'list_loc_denver',
+        'host_id',
+        'host_loc_denver',
+        'host_url',
+        'needs_license',
+        'current_license', 
+        'minimum_nights',
+        'maximum_nights'
+        ]
+    df = df[table_columns]
+    data = df[:40].to_html(index=False, classes='table table-striped table-dark')
     return render_template('index.html', data=data)
 
-@app.route('/test')
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/next-steps')
 def test():
-    # Logic for reading our data
-    df = pd.read_csv('static/data/data.csv')
-    data = df.to_html()
-    return render_template('index.html', data=data)
+    return '<h1>Next Steps</h1>'
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
 
