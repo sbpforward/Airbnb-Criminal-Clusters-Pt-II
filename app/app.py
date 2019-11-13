@@ -7,19 +7,19 @@ app = Flask(__name__)
 def home():
     # Logic for reading data
     df = pd.read_json('static/data/flask_df.json')
-    table_columns = [
-        'kmeans_cluster',
-        'listing_url',
-        'list_loc_denver',
-        'host_id',
-        'host_loc_denver',
-        'host_url',
-        'needs_license',
-        'current_license', 
-        'minimum_nights',
-        'maximum_nights'
-        ]
-    df = df[table_columns]
+    # table_columns = [
+    #     'Likelihood',
+    #     'Listing URL',
+    #     'Listing in Denver',
+    #     'Host ID',
+    #     'Host in Denver',
+    #     'Host URL',
+    #     'Requires License',
+    #     'Current License', 
+    #     'Minimum Nights',
+    #     'Maximum Nights'
+    #     ]
+    # df = df[table_columns]
     data = df[:40].to_html(index=False, classes='table table-striped table-dark')
     return render_template('index.html', data=data)
 

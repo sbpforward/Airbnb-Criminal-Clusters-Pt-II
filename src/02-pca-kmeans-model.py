@@ -18,7 +18,6 @@ def few_categorical_df(df):
     Parameters
     ----------
     df: pandas.DataFrame  
-
     Returns
     ----------
     df: pandas.DataFrame 
@@ -35,7 +34,6 @@ def y_target_vals(df):
     Parameters
     ----------
     df: pandas.DataFrame 
-
     Returns
     ----------
     arr: array
@@ -102,7 +100,6 @@ def plot_PCA(df, title):
     Parameters
     ----------
     df: pd.DataFrame
-
     Returns
     ----------
     plt: image 
@@ -133,7 +130,6 @@ def plot_KMeans(few_principalComponents):
     Parameters
     ----------
     df: pd.DataFrame
-
     Returns
     ----------
     plt: image
