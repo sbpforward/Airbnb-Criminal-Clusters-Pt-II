@@ -21,16 +21,12 @@ def convert_cols_yes_no(df):
 def likelihood(df):
     # flask_df.kmeans_cluster.replace(['Very', 'Somewhat', 'Not'], [0, 1, 2], inplace=True)
     # flask_df.kmeans_cluster.replace(to_replace=dict(Very=0, Somewhat=1, Not=2), inplace=True)
-    # flask_df['kmeans_cluster'].map({0:'Very', 1:'Somewhat', 2:'Not'})
-
-    flask_df['kmeans_cluster'] = flask_df['kmeans_cluster'].replace(regex=0, value='Very')
-    flask_df['kmeans_cluster'] = flask_df['kmeans_cluster'].replace(regex=1, value='Somewhat')
-    flask_df['kmeans_cluster'] = flask_df['kmeans_cluster'].replace(regex=2, value='Not')
-
+    # flask_df.kmeans_cluster.map({0:'Very', 1:'Somewhat', 2:'Not'})
+    flask_df['kmeans_cluster'].replace([0, 1, 2], ['Very', 'Somewhat', 'Not'], inplace=True)
     return flask_df
 
 def sort(df):
-    flask_df = df.sort_values(by=['kmeans_cluster', 'host_id', 'current_license'])
+    flask_df = df.sort_values(by=['kmeans_cluster', 'host_id', 'current_license'], ascending=[False, True, True])
     return  flask_df
 
 def rename_cols(df):
@@ -47,7 +43,6 @@ def save_json(df):
     df.to_json('../data/flask_df.json')
     return df
 
-
 if __name__ == '__main__':
     df_master = pd.read_pickle('../data/pickled_listings_df')
     df_kmeans = pd.read_pickle('../data/pickled_kmeans_df') 
@@ -55,10 +50,9 @@ if __name__ == '__main__':
     
     flask_df = flask_df(df)
     flask_df = convert_cols_yes_no(flask_df)
-    # flask_df = likelihood(flask_df)
+    flask_df = likelihood(flask_df)
     flask_df = sort(flask_df)
     flask_df = rename_cols(flask_df)
 
     save(flask_df)
     save_json(flask_df)
-
